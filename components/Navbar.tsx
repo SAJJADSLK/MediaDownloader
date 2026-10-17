@@ -11,6 +11,7 @@ export function Navbar() {
     { href: '/instagram', label: 'Instagram' },
     { href: '/youtube', label: 'YouTube' },
     { href: '/twitter', label: 'Twitter / X' },
+    { href: '/rutube', label: 'Rutube' },
     { href: '/zen', label: 'Zen Analytics' },
     { href: '/blog', label: 'Guides & Insights' },
   ];

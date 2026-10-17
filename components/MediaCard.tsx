@@ -24,6 +24,7 @@ export function MediaCard({
   type,
 }: MediaCardProps) {
   const [downloading, setDownloading] = useState<string | null>(null);
+  const [showQr, setShowQr] = useState(false);
 
   const triggerDownload = async (url: string, filename: string, id: string) => {
     setDownloading(id);
@@ -163,8 +164,63 @@ export function MediaCard({
               <span>{downloading === 'audio' ? 'Saving...' : 'MP3 Audio'}</span>
             </button>
           )}
+
+          {/* Viral Traffic Feature: Send to Phone (QR Code) */}
+          <button
+            onClick={() => setShowQr(true)}
+            className="inline-flex items-center gap-1.5 border border-white/[0.12] hover:border-white/[0.25] text-neutral-300 hover:text-white font-medium rounded-xl px-4 py-2.5 text-xs transition-all duration-200 hover:bg-white/[0.06] active:scale-[0.98]"
+            title="Scan QR Code to download on mobile"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <rect x="2" y="2" width="8" height="8" rx="1" />
+              <rect x="14" y="2" width="8" height="8" rx="1" />
+              <rect x="2" y="14" width="8" height="8" rx="1" />
+              <rect x="14" y="14" width="4" height="4" />
+              <line x1="22" y1="14" x2="22" y2="22" />
+              <line x1="14" y1="22" x2="22" y2="22" />
+            </svg>
+            <span>Send to Phone</span>
+          </button>
         </div>
       </div>
+
+      {/* QR Code Modal */}
+      {showQr && (
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in">
+          <div className="bg-[#121217] border border-white/[0.1] rounded-2xl p-6 max-w-sm w-full text-center space-y-4 shadow-2xl">
+            <div className="flex items-center justify-between">
+              <h4 className="text-white font-bold text-sm">Download on Phone</h4>
+              <button
+                onClick={() => setShowQr(false)}
+                className="text-neutral-400 hover:text-white transition-colors p-1"
+                aria-label="Close QR Modal"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="bg-white p-3 rounded-xl inline-block shadow-lg mx-auto">
+              <img
+                src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=8&data=${encodeURIComponent(downloadUrlHD || downloadUrl)}`}
+                alt="QR Code to Download on Phone"
+                className="w-48 h-48 mx-auto"
+                loading="lazy"
+              />
+            </div>
+
+            <p className="text-neutral-400 text-xs leading-relaxed">
+              Open your camera on <strong>iPhone</strong> or <strong>Android</strong> and point it at the code to download this video directly to your photo gallery.
+            </p>
+
+            <button
+              onClick={() => setShowQr(false)}
+              className="w-full py-2.5 rounded-xl bg-white/[0.08] hover:bg-white/[0.15] text-white text-xs font-semibold transition-colors"
+            >
+              Done
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

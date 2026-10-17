@@ -173,6 +173,29 @@ export default function HomePage() {
               </div>
             </Link>
 
+            {/* Rutube Card */}
+            <Link
+              href="/rutube"
+              className="group bg-white/[0.03] border border-white/[0.06] rounded-2xl backdrop-blur-sm hover:bg-white/[0.06] hover:border-emerald-500/40 transition-all duration-300 p-8 flex flex-col justify-between"
+            >
+              <div>
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center mb-6 shadow-lg shadow-emerald-500/20">
+                  <span className="text-2xl">🇷🇺</span>
+                </div>
+                <h3 className="text-white font-bold text-xl mb-3 flex items-center justify-between">
+                  <span>Rutube Downloader</span>
+                  <span className="text-xs font-normal text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full">1080p HD & Shorts</span>
+                </h3>
+                <p className="text-neutral-400 text-sm leading-relaxed">
+                  Download full-length Rutube videos, TV episodes, and vertical Shorts in high-definition MP4 directly without logins.
+                </p>
+              </div>
+              <div className="mt-8 text-emerald-400 group-hover:text-emerald-300 transition-colors flex items-center gap-2 text-sm font-semibold">
+                Open Downloader
+                <span className="group-hover:translate-x-1 transition-transform">&rarr;</span>
+              </div>
+            </Link>
+
             {/* Zen Analytics Card */}
             <Link
               href="/zen"
@@ -323,6 +346,7 @@ export default function HomePage() {
                     <th className="py-3 pr-4">Feature</th>
                     <th className="py-3 px-4">TikTok Downloader</th>
                     <th className="py-3 px-4">Instagram Downloader</th>
+                    <th className="py-3 px-4">Rutube Downloader</th>
                     <th className="py-3 pl-4">Zen Analytics</th>
                   </tr>
                 </thead>
@@ -331,29 +355,34 @@ export default function HomePage() {
                     <td className="py-3 pr-4 font-medium text-white">No Watermarks</td>
                     <td className="py-3 px-4 text-emerald-400">&check; Included</td>
                     <td className="py-3 px-4 text-emerald-400">&check; Native Feed</td>
+                    <td className="py-3 px-4 text-emerald-400">&check; Clean Streams</td>
                     <td className="py-3 pl-4 text-neutral-500">N/A (Analytics)</td>
                   </tr>
                   <tr>
                     <td className="py-3 pr-4 font-medium text-white">Maximum Resolution</td>
                     <td className="py-3 px-4 text-neutral-300">1080p Full HD</td>
-                    <td className="py-3 px-4 text-neutral-300">Up to 4K Photos / 1080p Reels</td>
+                    <td className="py-3 px-4 text-neutral-300">Up to 4K / 1080p</td>
+                    <td className="py-3 px-4 text-neutral-300">1080p Full HD</td>
                     <td className="py-3 pl-4 text-neutral-500">N/A</td>
                   </tr>
                   <tr>
                     <td className="py-3 pr-4 font-medium text-white">Audio Track Extraction</td>
                     <td className="py-3 px-4 text-emerald-400">&check; MP3 320kbps</td>
                     <td className="py-3 px-4 text-emerald-400">&check; Integrated AAC</td>
+                    <td className="py-3 px-4 text-emerald-400">&check; Native Audio</td>
                     <td className="py-3 pl-4 text-neutral-500">N/A</td>
                   </tr>
                   <tr>
                     <td className="py-3 pr-4 font-medium text-white">Batch / Carousel Support</td>
                     <td className="py-3 px-4 text-neutral-300">Slideshows supported</td>
-                    <td className="py-3 px-4 text-emerald-400">&check; Full Multi-Slide Unpacking</td>
+                    <td className="py-3 px-4 text-emerald-400">&check; Multi-Slide Unpacking</td>
+                    <td className="py-3 px-4 text-neutral-300">Shorts & Episodes</td>
                     <td className="py-3 pl-4 text-neutral-500">N/A</td>
                   </tr>
                   <tr>
                     <td className="py-3 pr-4 font-medium text-white">Audience & Reach Analytics</td>
                     <td className="py-3 px-4 text-neutral-500">Basic play counts</td>
+                    <td className="py-3 px-4 text-neutral-500">N/A</td>
                     <td className="py-3 px-4 text-neutral-500">N/A</td>
                     <td className="py-3 pl-4 text-emerald-400">&check; Subscribers, Views, Read Time</td>
                   </tr>

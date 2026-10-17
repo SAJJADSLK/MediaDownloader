@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { detectPlatform, type DetectionResult } from '@/lib/detector';
 
 interface DownloadFormProps {
-  platform: 'tiktok' | 'instagram' | 'youtube' | 'twitter';
+  platform: 'tiktok' | 'instagram' | 'youtube' | 'twitter' | 'rutube';
   placeholder: string;
   onSubmit: (url: string) => void;
   loading: boolean;

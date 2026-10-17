@@ -60,6 +60,14 @@ export function Footer() {
               </li>
               <li>
                 <Link
+                  href="/rutube"
+                  className="text-neutral-400 hover:text-white transition-colors"
+                >
+                  Rutube Video Downloader
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/zen"
                   className="text-neutral-400 hover:text-white transition-colors"
                 >

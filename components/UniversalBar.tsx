@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { detectPlatform, type DetectionResult } from '@/lib/detector';
 
-type PlatformTab = 'auto' | 'tiktok' | 'instagram' | 'youtube' | 'twitter' | 'zen';
+type PlatformTab = 'auto' | 'tiktok' | 'instagram' | 'youtube' | 'twitter' | 'rutube' | 'zen';
 
 interface TabConfig {
   id: PlatformTab;
@@ -19,7 +19,7 @@ const TABS: TabConfig[] = [
     id: 'auto',
     label: '✨ Auto-Detect',
     icon: '✨',
-    placeholder: 'Paste any TikTok, Instagram, YouTube, Twitter/X link or Zen channel...',
+    placeholder: 'Paste any TikTok, Instagram, YouTube, Twitter/X, Rutube link or Zen channel...',
     badgeColor: 'border-white/20 text-white bg-white/10',
   },
   {
@@ -49,6 +49,13 @@ const TABS: TabConfig[] = [
     icon: '🐦',
     placeholder: 'Paste Twitter or X post with video (e.g. https://x.com/username/status/...)',
     badgeColor: 'border-blue-500/40 text-blue-300 bg-blue-500/10',
+  },
+  {
+    id: 'rutube',
+    label: 'Rutube',
+    icon: '🇷🇺',
+    placeholder: 'Paste Rutube video link (e.g. https://rutube.ru/video/... or /shorts/...)',
+    badgeColor: 'border-emerald-500/40 text-emerald-300 bg-emerald-500/10',
   },
   {
     id: 'zen',
@@ -116,6 +123,8 @@ export function UniversalBar() {
       router.push(`/youtube?url=${encodeURIComponent(trimmed)}`);
     } else if (target === 'twitter') {
       router.push(`/twitter?url=${encodeURIComponent(trimmed)}`);
+    } else if (target === 'rutube') {
+      router.push(`/rutube?url=${encodeURIComponent(trimmed)}`);
     } else if (target === 'zen') {
       router.push(`/zen?q=${encodeURIComponent(trimmed)}`);
     } else {
@@ -221,6 +230,11 @@ export function UniversalBar() {
           {detection.platform === 'twitter' && (
             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-300 font-medium">
               <span>🐦</span> Twitter / X Detected &mdash; High-res video & GIF ready
+            </span>
+          )}
+          {detection.platform === 'rutube' && (
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 font-medium">
+              <span>🇷🇺</span> Rutube Video Detected &mdash; 1080p HD stream ready
             </span>
           )}
           {detection.platform === 'zen' && (

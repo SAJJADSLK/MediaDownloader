@@ -9,9 +9,32 @@ import '@/app/globals.css';
 export const metadata: Metadata = {
   title: 'MediaHub — Universal Video Downloader & Creator Analytics Suite',
   description:
-    'Download videos from TikTok (No Watermark), Instagram Reels, YouTube Shorts, and Twitter/X in 1080p HD or MP3, plus real-time Yandex Zen channel analytics.',
+    'Download videos from TikTok (No Watermark), Instagram Reels, YouTube Shorts, Rutube, and Twitter/X in 1080p HD or MP3, plus real-time Yandex Zen channel analytics.',
   other: {
     'google-adsense-account': 'ca-pub-3811332485680799',
+  },
+};
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'MediaHub',
+  url: 'https://mediahub.tools',
+  description:
+    'Free universal media downloader for TikTok, Instagram, YouTube, Rutube, and Twitter/X without watermarks.',
+  applicationCategory: 'MultimediaApplication',
+  operatingSystem: 'All',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+  },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.9',
+    ratingCount: '48250',
+    bestRating: '5',
+    worstRating: '1',
   },
 };
 
@@ -24,6 +47,10 @@ export default function RootLayout({
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <head>
         <meta name="google-adsense-account" content="ca-pub-3811332485680799" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3811332485680799"

@@ -4,6 +4,7 @@ export type DetectedPlatform =
   | 'zen'
   | 'youtube'
   | 'twitter'
+  | 'rutube'
   | 'facebook'
   | 'unknown';
 
@@ -25,7 +26,7 @@ export interface DetectionResult {
  * Smart URL & Input Detector
  * Automatically parses any URL, query, or snippet to detect the origin platform.
  */
-export function detectPlatform(input: string, currentContext?: 'tiktok' | 'instagram' | 'zen' | 'youtube' | 'twitter'): DetectionResult {
+export function detectPlatform(input: string, currentContext?: 'tiktok' | 'instagram' | 'zen' | 'youtube' | 'twitter' | 'rutube'): DetectionResult {
   const trimmed = input.trim();
   if (!trimmed) {
     return {
@@ -155,7 +156,26 @@ export function detectPlatform(input: string, currentContext?: 'tiktok' | 'insta
     };
   }
 
-  // 6. Unsupported Platform (Facebook)
+  // 6. Rutube Detection
+  const isRutube = lower.includes('rutube.ru');
+  if (isRutube) {
+    const isMismatched = currentContext && currentContext !== 'rutube';
+    return {
+      platform: 'rutube',
+      isSupported: true,
+      cleanUrl: trimmed.split('?')[0],
+      confidence: 'high',
+      label: 'Rutube Video',
+      badgeColor: 'emerald',
+      suggestedAction: isMismatched ? {
+        targetPath: `/rutube?url=${encodeURIComponent(trimmed)}`,
+        targetName: 'Rutube Downloader',
+        message: 'This is a Rutube link! Click to switch to Rutube Downloader.',
+      } : undefined,
+    };
+  }
+
+  // 7. Unsupported Platform (Facebook)
   if (lower.includes('facebook.com') || lower.includes('fb.watch')) {
     return {
       platform: 'facebook',
