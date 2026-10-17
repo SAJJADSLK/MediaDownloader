@@ -10,7 +10,7 @@ interface MediaCardProps {
   downloadUrl: string;
   downloadUrlHD?: string;
   audioUrl?: string;
-  type: 'video' | 'image' | 'audio';
+  type: 'video' | 'image' | 'audio' | 'gif';
 }
 
 export function MediaCard({
@@ -69,7 +69,7 @@ export function MediaCard({
           />
         ) : (
           <div className="w-full h-full bg-gradient-to-br from-violet-500/20 via-fuchsia-500/20 to-pink-500/20 flex items-center justify-center">
-            {type === 'video' && (
+            {(type === 'video' || type === 'gif') && (
               <svg width="48" height="48" viewBox="0 0 24 24" fill="none" className="text-neutral-500">
                 <polygon points="5 3 19 12 5 21 5 3" fill="currentColor" opacity="0.6" />
               </svg>
@@ -137,7 +137,7 @@ export function MediaCard({
           )}
 
           <button
-            onClick={() => triggerDownload(downloadUrl, sanitizeFilename(title, type === 'image' ? 'jpg' : 'mp4'), 'standard')}
+            onClick={() => triggerDownload(downloadUrl, sanitizeFilename(title, type === 'image' ? 'jpg' : type === 'gif' ? 'gif' : 'mp4'), 'standard')}
             disabled={downloading === 'standard'}
             className="inline-flex items-center gap-1.5 border border-white/[0.12] hover:border-white/[0.25] text-neutral-200 hover:text-white font-medium rounded-xl px-4 py-2.5 text-xs transition-all duration-200 hover:bg-white/[0.06] active:scale-[0.98] disabled:opacity-50"
           >
